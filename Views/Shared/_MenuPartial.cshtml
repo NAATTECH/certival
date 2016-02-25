@@ -1,0 +1,64 @@
+﻿
+<header class="" >
+    <div id="header">
+        <div class="pure-menu pure-menu-horizontal menu-top">
+            <div class="container accountId">
+                <span>
+                    <img class="brand-logo" src="../Content/img/logo-certival-w.png">
+                </span>
+
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <ul class="pure-menu-list navbar-right ">
+                            <li id="accountSelector" class="pure-menu-item ">
+
+                                <span class="user">
+                                    @Html.ActionLink("Bienvenido " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                </span>
+                                <span class="who">Estado</span>
+                            </li>
+                            <li class="pure-menu-item "><a href="@Url.Action("Index", "Manage")"><span class="set-top"><i class="fa fa-cog fa-2x"></i></span></a></li>
+                            <li class="pure-menu-item "><a href="#"><span class="set-top"><i class="fa fa-bell-o fa-2x"></i></span></a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                   <!-- <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>-->
+                }
+            </div>
+        </div>
+        <div class="nav-barsubnav subnav">
+            <div class="pure-menu custom-can-transform alingh container">
+                <ul class="pure-menu-list navCer">
+                    <li class="pure-menu-item item-up menu">
+                        <a href="@Url.Action("Index", "Home")" class=""><span>Solicitudes</span></a>
+                    </li>                  
+                    <li class="pure-menu-item item-up menu">
+                        <a href="@Url.Action("About", "Home")" class=""><span>Ayuda</span></a>
+                    </li>
+                    <li class="logout">
+                        <a href="javascript:document.getElementById('logoutForm').submit()" ><span style="padding-right:10px; vertical-align: top;"> Salir de la Cuenta </span><i class="fa fa-sign-out fa-2x"></i></a>
+                    </li>
+                </ul>
+               
+
+            </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+</header>

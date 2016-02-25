@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Confirmaciòn de la cuenta por Email";
+}
+
+<h2 style="color:#eeb800;">@ViewBag.Title.</h2>
+<div>
+    <p>
+        Gracias por confirmar este mail para poder utilizar la cuenta<br />
+        en CERTIVAL el sistema de la Dirección General de Acreditación,<br />
+        Incorporación y Revalidación<br />
+
+
+        <br />
+         @Html.ActionLink("Haz Click aquì para Ingresar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+
+        <br />
+    </p>
+</div>

@@ -1,0 +1,138 @@
+﻿@model CERTIVAL.Models.IndexViewModel
+@{
+    ViewBag.Title = "Configuración de la Cuenta";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Cambiar las configuraciones de su cuenta</h4>
+    <hr />
+    <div>
+        <div class="media">
+            <div class="media-left media-top">
+                <a href="#">
+                    <i class="fa fa-user fa-5x"></i>
+
+                    <img class="media-object" src="..." alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading titleColor">Perfil del Usuario</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Nombre(S)</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Apellido Paterno</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Apelllido Materno</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Fecha de Nacimiento</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>_______________________.</dd>
+                    <h4 class="media-heading titleColor">Datos Domicilio Personales</h4>
+                    <hr />
+                    <dt>Calle y Número:</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Colonia</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Código Postal</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Identidad Federativa</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Municipio</dt>
+                    <dd>_______________________.</dd>
+                   <h4 class="media-heading titleColor"> Información Telefónica</h4>
+                    <hr />
+                    <dt>Teléfono de Casa</dt>
+                    <dd>_______________________.</dd>
+                    <dt>Teléfono Celular</dt>
+                    <dd>_______________________.</dd>
+
+                    <h4 class="media-heading titleColor">Datos de la Cuenta</h4>
+                    <hr/>
+                    <dt>Usuario / Email:</dt>
+                    <dd></dd>
+                    <dt>Contraseña:</dt>
+                    <dd>
+                        [
+                        @if (Model.HasPassword)
+            {
+                            @Html.ActionLink("Cambiar  la Contraseña", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Crear", "SetPassword")
+                        }
+                        ]
+                    </dd>
+                    <dt>Ingresos Externos:</dt>
+                    <dd>
+                        @Model.Logins.Count [
+                        @Html.ActionLink("Manage", "ManageLogins") ]
+                    </dd>
+                    @*
+            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+             Uncomment the following block after you have set up two-factor authentication
+                    *@
+                    @*
+            <dt>Phone Number:</dt>
+            <dd>
+                @(Model.PhoneNumber ?? "None") [
+                @if (Model.PhoneNumber != null)
+                {
+                    @Html.ActionLink("Change", "AddPhoneNumber")
+                    @: &nbsp;|&nbsp;
+                    @Html.ActionLink("Remove", "RemovePhoneNumber")
+                }
+                else
+                {
+                    @Html.ActionLink("Add", "AddPhoneNumber")
+                }
+                ]
+            </dd>
+                    *@
+                    <dt>Two-Factor Authentication:</dt>
+                    <dd>
+                   <!--     <p>
+                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                            for details on setting up this ASP.NET application to support two-factor authentication.
+                        </p>-->
+                        @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+                    </dd>
+                </dl>
+            </div>
+        </div>  
+        
+
+
+
+
+      
+    </div>
+</div>

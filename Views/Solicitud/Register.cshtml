@@ -1,0 +1,340 @@
+﻿@model CERTIVAL.Models.RegistrarSolicitudViewModel
+
+@{
+    ViewBag.Title = "Ingresar Solicitud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title. <small> CERTIVAL 1.0 ALPHA</small></h2>
+<hr />
+
+@using (Html.BeginForm("Register", "Solicitud", FormMethod.Post, new { @class = "form-horizontal pure-form pure-form-aligned ", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <fieldset>
+
+        <!--Datos para firmas necesarios-->       
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panelTap">
+                    <div class="panel-heading " role="tab" id="headingOne">
+                        <h3 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                               
+                                | PASO 1 |   Verificación de Datos Personales en la Solicitud
+                                
+                            </a>
+                                  
+                        </h3>
+                     
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+
+                           <div>
+
+                               <h3> Datos Generales del Solicitante </h3>
+                               <hr />
+                            <div class="pure-control-group">
+                                @Html.HiddenFor(m => m.Procedimiento)
+
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Correo Electrónico" } })                              
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                             
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre(s)" } })
+                                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.ApellidoPaterno, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.ApellidoPaterno, new { htmlAttributes = new { @class = "form-control", placeholder = "Apellido Paterno" } })
+                                @Html.ValidationMessageFor(model => model.ApellidoPaterno, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.ApellidoMaterno, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control", placeholder = "Apellido Materno" } })
+                                @Html.ValidationMessageFor(model => model.ApellidoMaterno, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Curp, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Curp, new { htmlAttributes = new { @class = "form-control", placeholder = "Curp" } })
+                               
+                                 @Html.ValidationMessageFor(model => model.Curp, "", new { @class = "text-danger" })
+                                <a href="https://consultas.curp.gob.mx" target="_blank"><span><i class="fa fa-info-circle"></i></span>Puede acceder al link si no conoce su CURP</a>
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Nacimiento" } })
+                                
+                                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label " })
+                                @Html.EnumDropDownListFor(model => model.Genero, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Nacionalidad, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Nacionalidad, new { htmlAttributes = new { @class = "form-control", placeholder = "Nacionalidad" } })
+                                @Html.ValidationMessageFor(model => model.Nacionalidad, "", new { @class = "text-danger" })
+
+                            </div>
+                            <!--Datos Domicilio Del Solicitante Necesarios-->
+                            <h3> Domicilio</h3>
+                            <hr />
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Domicilio, htmlAttributes: new { @class = "control-label " })
+                              @Html.EditorFor(model => model.Domicilio, new { htmlAttributes = new { @class = "form-control", placeholder = "Calle y Número" } })
+                                @Html.ValidationMessageFor(model => model.Domicilio, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Colonia, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Colonia, new { htmlAttributes = new { @class = "form-control", placeholder = "Colonia" } })
+                                @Html.ValidationMessageFor(model => model.Colonia, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.CodigoPostal, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Codigo Postal" } })
+                                @Html.ValidationMessageFor(model => model.CodigoPostal, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.EntidadFederativa, htmlAttributes: new { @class = "control-label " })
+                                @Html.DropDownListFor(model => model.EntidadFederativa, (SelectList)ViewBag.Entidades, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EntidadFederativa, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.Municipio, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.Municipio, new { htmlAttributes = new { @class = "form-control", placeholder = "Municipio o Localidad" } })
+                                @Html.ValidationMessageFor(model => model.Municipio, "", new { @class = "text-danger" })
+                            </div>
+                            <!--Datos Telefonicos de Contacto Del Solicitante Necesarios-->
+                            <h3> Información Telefónica</h3>
+                            <hr />
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.TelefonoCasa, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.TelefonoCasa, new { htmlAttributes = new { @class = "form-control", placeholder = "Lada + Teléfono Casa" } })
+                                @Html.ValidationMessageFor(model => model.TelefonoCasa, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="pure-control-group">
+                                @Html.LabelFor(model => model.TelefonoCelular, htmlAttributes: new { @class = "control-label " })
+                                @Html.EditorFor(model => model.TelefonoCelular, new { htmlAttributes = new { @class = "form-control", placeholder = "Teléfono Celular" } })
+                                @Html.ValidationMessageFor(model => model.TelefonoCelular, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <hr>
+                            <div class="pp">
+                                <h3>¿Por qué medio se enteró de este programa de acreditación ?</h3>
+                                <hr />
+                                @foreach (var myValue in (SelectList)ViewBag.Medios)
+                {
+                                    @Html.RadioButtonFor(m => m.MedioInformativo, myValue.Text) @("  " + myValue.Text + "  ")
+                                }
+                                @Html.EditorFor(m => m.MedioInformativo, new { htmlAttributes = new { @class = "form-control", placeholder = "Especifique" } })
+                                @Html.ValidationMessageFor(model => model.MedioInformativo, "", new { @class = "text-danger" })
+                            </div>
+                            <hr>
+                            <label for="terms" class="pure-checkbox">
+                                @Html.CheckBoxFor(m => m.AceptaAvisoConformidad)
+                                Aceptación de <a href="@Url.Action("AvisoConformidad", "Home")">Aviso de Conformidad </a>
+                                @Html.ValidationMessageFor(model => model.AceptaAvisoConformidad, "", new { @class = "text-danger" })
+                            </label>
+
+
+                            <!--   <div class="pure-control-group">
+            @Html.LabelFor(model => model.MedioInformativo, htmlAttributes: new { @class = "control-label " })
+            @foreach (var myValue in (SelectList)ViewBag.Medios)
+            {
+                @Html.RadioButtonFor(model => model.MedioInformativo, myValue.Text) @("  " + myValue.Text + "  ")
+            }
+            @Html.EditorFor(model => model.MedioInformativo, new { htmlAttributes = new { @class = "form-control", placeholder = "Especifique" } })
+            @Html.ValidationMessageFor(model => model.MedioInformativo, "", new { @class = "text-danger" })
+        </div>
+
+
+        <label for="terms" class="pure-checkbox">
+            @Html.EditorFor(model => model.AceptaAvisoConformidad)
+            Aceptación de Aviso de conformidad
+            @Html.ValidationMessageFor(model => model.AceptaAvisoConformidad, "", new { @class = "text-danger" })
+        </label>
+         -->
+                        </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panelTap">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h3 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                | PASO 2 |  Seleccionar el Nivel y Perfil a Acreditar
+                            </a>
+                            
+                        </h3>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.NivelAcreditar, htmlAttributes: new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.NivelAcreditar, (SelectList)ViewBag.Niveles, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NivelAcreditar, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.PerfilProfesional, htmlAttributes: new { @class = "control-label " })
+                                    @Html.DropDownListFor(model => model.PerfilProfesional, new SelectList(string.Empty, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panelTap">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h3 class="panel-title">
+                            <a class="collapsed " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                | PASO 3 |   Cargar documentación requerida
+                            </a>
+                            
+
+                        </h3>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div class="fallback">
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoActaNacimiento, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoActaNacimiento, new { type = "file" , style="width:380px;"})
+                                    @Html.ValidationMessageFor(model => model.AdjuntoActaNacimiento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoIdentificacionOficial, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoIdentificacionOficial, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoIdentificacionOficial, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoAntecedenteAcademicoInmediato, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoAntecedenteAcademicoInmediato, new { type = "file" })
+
+                                    @Html.ValidationMessageFor(model => model.AdjuntoAntecedenteAcademicoInmediato, "", new { @class = "text-danger" })
+
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoConstanciaMaximaEstudios, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i>  @Html.TextBoxFor(m => m.AdjuntoConstanciaMaximaEstudios, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoConstanciaMaximaEstudios, "", new { @class = "text-danger" })
+
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoEvaluacionAprobatoriaEstudios, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoEvaluacionAprobatoriaEstudios, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoEvaluacionAprobatoriaEstudios, "", new { @class = "text-danger" })
+
+
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoConstanciaHonorabilidad, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoConstanciaHonorabilidad, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoConstanciaHonorabilidad, "", new { @class = "text-danger" })
+
+
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoCVActualizado, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoCVActualizado, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoCVActualizado, "", new { @class = "text-danger" })
+
+
+
+
+                                </div>
+                                <div class="pure-control-group">
+                                    @Html.LabelFor(model => model.AdjuntoCertificadoCompetenciaLaboral, htmlAttributes: new { @class = "control-label " })
+                                    <i class="fa fa-upload"></i> @Html.TextBoxFor(m => m.AdjuntoCertificadoCompetenciaLaboral, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.AdjuntoCertificadoCompetenciaLaboral, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+           
+            
+
+            <button type="submit" class="pure-button pure-button-primary" style="font-size: 150%; margin-top: 15px;  margin-left: 420px;">
+
+                Ingresar La  Solicitud
+            </button>
+
+
+</fieldset>
+                <hr>
+
+
+
+}
+
+<div>
+    @Html.ActionLink("Regresar a Tipo de Procedimiento", "Index","Home")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
